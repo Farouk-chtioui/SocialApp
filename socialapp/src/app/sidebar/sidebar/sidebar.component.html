@@ -1,0 +1,21 @@
+<!-- sidebar.component.html -->
+
+<div class="sidebar">
+  <!-- Part 1: Search bar and Add Friend icon -->
+  <div class="search-box">
+    <input type="text" placeholder="Search Friends...">
+    <a href="#" class="add-friend">
+      <i class="bi bi-person-plus"></i> <!-- Add Friend icon from Bootstrap Icons -->
+    </a>
+  </div>
+  <!-- Part 2: Online Friends -->
+  <div class="online-friends">
+    <h5>Online Friends</h5>
+    <ul class="list-unstyled">
+      <li *ngFor="let friend of friends">
+        <a><span class="online-indicator"></span> {{ friend.name }}</a>
+      </li>
+      <!-- Add more friends as needed -->
+    </ul>
+  </div>
+</div>

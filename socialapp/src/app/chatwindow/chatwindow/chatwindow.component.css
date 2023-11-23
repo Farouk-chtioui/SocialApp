@@ -1,0 +1,74 @@
+.wrapper {
+    height: 100vh;
+    background: #282a36;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom right, #44475a, #282a36);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom right, #44475a, #282a36);
+}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #282a36;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to bottom right, #44475a, #282a36);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom right, #44475a, #282a36);
+    margin-top: 6%;
+}
+
+    .mask-custom {
+    background: rgba(24, 24, 16, .2);
+    border-radius: 2em;
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    background-clip: padding-box;
+    box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    }
+
+    #textAreaExample3 {
+        background-color: transparent;
+        border: solid aliceblue; /* Optional: Remove border for a cleaner look */
+        color: #fff;
+    }
+    #chatMessages,
+    #chatMessages li {
+        color: white;
+    }
+    .card-body p {
+        color: white;
+    }
+    .fw-bold {
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .col-md-6 {
+          width: 100%; /* Make the first column full-width on small screens */
+          margin-top: 180px;
+        }
+    }
+  @media screen and (min-width: 769px) and (max-width: 1080px) {
+    .col-md-6 {
+        width: 80%; /* Make the first column half-width on medium screens */
+        margin-left: 10%;
+        margin-top: 5%;
+      }
+    
+      .col-md-6,
+      .col-lg-7 {
+        padding: 15px; /* Add padding back for medium screens */
+      }
+   
+  }
+  @media screen and (min-width: 1081px) and (max-width: 1700px) {
+    .col-md-6 {
+        width: 60%; /* Make the first column half-width on medium screens */
+        margin-left: 20%;
+        margin-top: 5%;
+      }
+  
+  }

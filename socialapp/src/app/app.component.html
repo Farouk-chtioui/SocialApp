@@ -1,0 +1,22 @@
+<!-- app.component.html -->
+
+<div *ngIf="isLoggedIn; else loginTemplate">
+  <!-- Displayed when the user is logged in -->
+  <app-navbar></app-navbar>
+  <div class="app-container">
+    <app-sidenav (logoutClicked)="logout()"></app-sidenav>
+    <!-- The main content of your application -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+      <app-feed></app-feed>
+    </div>
+
+    <app-sidebar></app-sidebar>
+  </div>
+</div>
+
+<ng-template #loginTemplate>
+  <!-- Displayed when the user is not logged in -->
+  <app-login (onSubmit)="login()"></app-login>
+  <app-register></app-register>
+</ng-template>

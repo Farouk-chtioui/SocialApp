@@ -1,0 +1,137 @@
+/* Add this to your component's CSS or styles file */
+.wrapper {
+  background-color: #282a36;
+  color: #fff;
+  height: 100%;
+}
+.container {
+  padding-top: 180px;
+  margin-left: 23%;
+}
+
+/* Add this to your component's CSS or styles file */
+.card {
+  border: 2px solid #44475a; /* Updated border color to match Dracula theme */
+  border-radius: 8%;
+  overflow: hidden;
+  transition: transform 0.5s;
+  width: 200px;
+  height: 260px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: #282a36;
+  margin: 10px; /* Add margin for spacing between cards */
+}
+.card-margin {
+  margin-right: 10px; /* Adjust this value as needed */
+}
+
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  width: 99.75%; /* Make images 0.25% smaller */
+  height: auto;
+  border-bottom: 1px solid #44475a; /* Updated border color to match Dracula theme */
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #bd93f9; /* Updated text color to match Dracula theme */
+}
+
+.card-text {
+  color: #6272a4; /* Updated text color to match Dracula theme */
+}
+
+.drac-btn {
+  color: #f8f8f2; /* Text color for Dracula theme buttons */
+  background: linear-gradient(to right, #44475a, #282a36); /* Dracula gradient colors */
+  border-color: #44475a;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: filter 0.3s ease; /* Add smooth transition for hover effect */
+}
+.drac-btn:hover {
+  filter: brightness(1.2); /* Hover effect for brightness */
+}
+
+/* Media query for smaller screens */
+/* @media screen and (max-width: 1500px) {
+  .row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Display cards in 3 columns */
+   /* gap: 20px; /* Gap between cards */
+    /* justify-content: center;
+    align-items: center;
+  }
+}
+*/
+/* Responsive Styles */
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .container {
+    margin-top: 20%;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 200px; /* Set a maximum width for better control on smaller screens */
+    height: 250px;
+  }
+  
+  .col-md-2 {
+    flex: 0 1 calc(45% - 20px); /* Adjust the width of each card as needed */
+    max-width: calc(45% - 20px); /* Adjust the max-width of each card as needed */
+    margin-right: 20px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1080px) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px; /* Adjust the gap between columns as needed */;
+  }
+  .container {
+    margin-left:15%;
+
+}
+  .col-md-2 {
+    flex: 0 1 calc(30% - 10px); /* Adjust the width of each card as needed */
+    max-width: calc(30% - 10px); /* Adjust the max-width of each card as needed */
+    margin-right: 10px; /* Add margin to the right for space between cards */
+  }
+}
+@media screen and (min-width: 1081px) and (max-width: 1440px) {
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px; /* Adjust the gap between columns as needed */
+  }
+  .container {
+    width: 60%;
+  }
+  .col-md-2 {
+    flex: 0 1 calc(22% - 10px); /* Adjust the width of each card as needed */
+    max-width: calc(22% - 10px); /* Adjust the max-width of each card as needed */
+    margin-right: 10px; /* Add margin to the right for space between cards */
+  }
+  
+
+}

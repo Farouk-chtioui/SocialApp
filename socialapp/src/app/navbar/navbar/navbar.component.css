@@ -1,0 +1,221 @@
+/* Import Dracula theme *//* 
+@import url('path/to/dracula.css'); */
+
+/* Reset some default styling */
+body, h1, h2, h3, p, div {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply Dracula color theme */
+body {
+  background-color: #282a36; /* Dracula background color */
+  color: #f8f8f2; /* Dracula text color */
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Set initial background color */
+  background: linear-gradient(to right,#282a36, #44475a);
+  border-bottom: 2px solid #ff79c6;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  /* Add animation properties */
+  background-size: 200% 100%; /* Increase the background size to create room for animation */
+
+  animation: gradientAnimation 5s infinite ; /* Adjust the duration as needed */
+}
+
+
+
+.logo img {
+  padding-left: 10px;  
+  width: 200px; /* Adjust the width of your logo */
+  height: 100px; /* Auto height to maintain aspect ratio */
+  object-fit: contain; /* Keep the aspect ratio while fitting within the specified width and height */
+}
+
+/* Pink color for the logo */
+.logo {
+  color: #ff79c6; /* Dracula pink color */
+}
+
+/* Gray color for the navbar text */
+.navbar-text {
+  color: #6272a4; /* Dracula comment gray color */
+}
+
+.search-bar {
+  flex: 1;
+  margin: 0 10px;
+  max-width: 300px; /* Maximum width for the search bar */
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #6272a4; /* Dracula border color */
+  border-radius: 5px;
+  color: #fff; /* Dracula text color for input */
+  background: linear-gradient(to right, #6272a4, #bd93f9); /* Initial linear gradient background */
+  background-size: 200% 100%; /* Increase the background size to create room for animation */
+  animation: gradientAnimation 3s linear infinite; /* Animation properties */
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 100% 0; /* Initial position */
+  }
+  50% {
+    background-position: 0 0; /* Midway position */
+  }
+  100% {
+    background-position: 100% 0; /* Final position */
+  }
+}
+
+.menu-icons {
+  display: flex;
+}
+
+.menu-icons a {
+  margin-left: 15px;
+  margin-right: 30px;
+  color: #bd93f9; /* Dracula text color for icons */
+  text-decoration: none;
+  font-size: 20px;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+/* Adjust icon sizes as needed */
+.bi {
+  font-size: 1.5rem;
+}
+
+.menu-icons a:hover,
+.menu-icons a:active {
+  color: #ff79c6; /* Dracula pink color for icons on hover and click */
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar {
+    margin-top: 10px; /* Add some top margin to separate from logo */
+  }
+  
+  .menu-icons {
+    margin-top: 10px; /* Add some top margin to separate from search bar */
+  }
+  
+  .menu-icons a {
+    margin: 0 10px;
+  }
+}
+
+
+button[data-toggle="collapse"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px; /* Adjust the margin as needed for spacing */
+  background: none; /* Remove button background */
+  border: none; /* Remove button border */
+  cursor: pointer;
+  padding-left: 20px;
+  
+}
+
+/* Optional: Add some styles for the icon */
+button[data-toggle="collapse"] i {
+  font-size: 1.5rem; /* Adjust the icon size as needed */
+  color: #000; /* Adjust the icon color as needed */
+}
+
+  /* Style for the collapsed list container */
+  .navbar-collapse {
+    position: absolute;
+    top: 50px; /* Adjust the top position as needed based on your design */
+    left: 0;
+    width: 50%;
+     /* Set the background color */
+    z-index: 999; /* Set an even higher z-index to overlay other elements */
+  }
+.animated-icon3 {
+  padding-left: 2.5px;
+}
+.animated-icon3 span {
+  display: block;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+  background: #bd93f9;
+}
+
+.animated-icon3 span:nth-child(1) {
+  top: 0px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3 span:nth-child(2) {
+  top: 10px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3 span:nth-child(3) {
+  top: 20px;
+  -webkit-transform-origin: left center;
+  -moz-transform-origin: left center;
+  -o-transform-origin: left center;
+  transform-origin: left center;
+}
+
+.animated-icon3.open span:nth-child(1) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: 0px;
+  left: 8px;
+}
+
+.animated-icon3.open span:nth-child(2) {
+  width: 0%;
+  opacity: 0;
+}
+
+.animated-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 21px;
+  left: 8px;
+}
+

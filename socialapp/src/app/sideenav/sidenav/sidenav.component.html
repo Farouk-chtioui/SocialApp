@@ -1,0 +1,26 @@
+<div class="sidenav">
+   <!-- Menu icon for responsive design -->
+   
+  
+  <!-- User Profile Box -->
+  <div class="profile-box">
+    <img src="../../assets/images/profilepic.png" alt="Profile Picture" class="profile-picture">
+    <span class="username">UserName</span>
+  </div>
+
+  <!-- Vertical Menu -->
+  <div class="menu">
+    <ul class="list-unstyled">
+      <li (click)="navigateToProfile()">
+        <a><i class="bi bi-person"></i><span>Profile</span></a>
+      </li>
+      <li (click)="navigateToFriends()"><a><i class="bi bi-people"></i><span>Friends</span></a></li>
+      <li (click)="navigateToGroups()"><a><i class="bi bi-people"></i><span>Groups</span></a></li>
+      <li><a><i class="bi bi-bar-chart"></i><span>Trending</span></a></li>
+      <li><a><i class="bi bi-calendar"></i><span>Events</span></a></li>
+      <li><a><i class="bi bi-box"></i><span>Archive</span></a></li>
+      <li><a (click)="onLogoutClick()"><i class="bi bi-box-arrow-right"></i><span>Logout</span></a></li>
+    </ul>
+  </div>
+
+</div>

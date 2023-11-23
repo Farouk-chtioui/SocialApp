@@ -1,0 +1,54 @@
+<div class="wrapper">
+  <div class="container mt-4">
+  <!-- Profile Box -->
+  <div class="card">
+      <div class="card-body">
+          <div class="text-center">
+              <img src="../../assets/images/profilepic.png" alt="Profile Picture"
+                  class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
+              <h4 class="card-title">User Name</h4>
+              <p class="card-text">Email: userexample.com</p>
+              <p class="card-text">Major: Computer Science</p>
+              <!-- Add more profile information here -->
+          </div>
+      </div>
+  </div>
+
+  <!-- Additional Information Box -->
+  <div class="card mt-4">
+      <div class="card-body">
+          <h5 class="card-title">Additional Information</h5>
+
+          <!-- Courses Dropdown -->
+          <div class="mb-3">
+            <label for="coursesDropdown" class="form-label">Courses</label>
+            <select class="form-select" id="coursesDropdown" multiple [(ngModel)]="courses">
+              <option *ngFor="let course of courses" [value]="course">{{ course }}</option>
+            </select>
+          </div>
+          
+          <!-- Interests Dropdown -->
+          <div class="mb-3">
+            <label for="interestsDropdown" class="form-label">Interests</label>
+            <select class="form-select" id="interestsDropdown" multiple [(ngModel)]="interests">
+              <option *ngFor="let interest of interests" [value]="interest">{{ interest }}</option>
+            </select>
+          </div>
+          
+          <!-- Add the ngModel directive for two-way data binding -->
+          <div class="mb-3 input-group">
+            <input [(ngModel)]="newCourse" (keyup.enter)="addCourse()" type="text" class="form-control" placeholder="New Course">
+            <button class="drac-btn" (click)="addCourse()">Add Course</button>
+          </div>
+          
+          <div class="mb-3 input-group">
+            <input [(ngModel)]="newInterest" (keyup.enter)="addInterest()" type="text" class="form-control" placeholder="New Interest">
+            <button class="drac-btn" (click)="addInterest()">Add Interest</button>
+          </div>
+          
+          
+
+      </div>
+  </div>
+</div>
+</div>

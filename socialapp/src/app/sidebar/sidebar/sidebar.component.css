@@ -1,0 +1,152 @@
+/* sidebar.component.css */
+h5 {
+  color: #6272a4;
+}
+/* Sidebar styles */
+.sidebar {
+  height: 100vh;
+  background-color: #282a36; /* Dracula background color */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  margin-top: 120px;
+  
+}
+
+/* Search box styles */
+.search-box {
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #44475a; /* Dracula border color */
+  border-radius: 5px;
+  color: #f8f8f2; /* Dracula text color */
+  background-color: #282a36; /* Dracula background color */
+}
+
+.add-friend {
+  display: block;
+  padding: 10px;
+  color: #bd93f9; /* Dracula pink color */
+  background-color: #44475a; /* Dracula background color */
+  text-decoration: none;
+  text-align: center;
+}
+
+.add-friend i {
+  margin-right: 5px;
+}
+
+/* Online Friends styles */
+.online-friends h5 {
+  margin-bottom: 10px;
+}
+
+
+.online-friends ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.online-friends li {
+  margin-bottom: 10px;
+}
+
+.online-friends a {
+  color: #f8f8f2; /* Dracula text color */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.online-friends a:hover {
+  color: #bd93f9; /* Dracula pink color on hover */
+}
+
+/* Add this to your existing CSS or create a new style file */
+.online-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #50fa7b; /* Dracula green color */
+  margin-right: 5px; /* Adjust the spacing between the indicator and the name */
+}
+
+/* Add Friend button styles */
+.add-friend {
+  display: block;
+  padding: 10px;
+  color: #bd93f9; /* Dracula pink color */
+  background-color: #44475a; /* Dracula background color */
+  border: 2px solid #bd93f9; /* Dracula purple border color */
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Search box styles */
+.search-box input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #44475a; /* Dracula border color */
+  border-radius: 5px;
+  color: #f8f8f2; /* Dracula text color */
+  background: linear-gradient(to right, #6272a4, #44475a, #282a36); /* Dracula gradient colors */
+  background-size: 200% 100%; /* Increase the background size to create room for animation */
+  animation: gradientAnimation 3s infinite; /* Add animated gradient background */
+}
+@keyframes gradientAnimation {
+  0% {
+    background-position: 100% 0; /* Initial position */
+  }
+  50% {
+    background-position: 0 0; /* Midway position */
+  }
+  100% {
+    background-position: 100% 0; /* Final position */
+  }
+}
+/* Media query for smaller screens (e.g., smartphones) */
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1080px) {
+  .sidebar {
+    width: 70px; /* Adjusted width for screens between 721px and 1080px */
+  }
+  /* Hide the search box */
+  .search-box {
+    display: none;
+  }
+  /* Adjust the width of the "Add Friend" button */
+  .search-box .add-friend {
+    width: 40px; /* Adjusted width for the "Add Friend" button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+  }
+  /* Optionally hide the text in the "Add Friend" button */
+  .add-friend i {
+    display: none;
+  }
+  .online-friends {
+    display: none;
+  }
+}
+@media screen and (min-width: 1081px) and (max-width: 1440px) {
+  .sidebar {
+    width: 20%;
+  }
+}
