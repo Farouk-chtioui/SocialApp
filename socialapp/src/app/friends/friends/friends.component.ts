@@ -10,22 +10,12 @@ import { CommonModule } from '@angular/common';
 })
 export class FriendsComponent {
   friends = [
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
-    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: '../../assets/images/drac.png' },
+    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: 'assets/images/drac.png' },
+    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: 'assets/images/drac.png' },
+    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: 'assets/images/drac.png' },
+    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: 'assets/images/drac.png' },
+    { name: 'John', bio: 'Lorem ipsum dolor sit amet' ,img: 'assets/images/drac.png' },
+
   ];
 }
 
