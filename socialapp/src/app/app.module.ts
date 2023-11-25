@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { SideenavModule } from './sideenav/sideenav.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,8 @@ import { ChatwindowModule } from './chatwindow/chatwindow.module';
 import { ProfileModule } from './profile/profile.module';
 import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,7 +26,7 @@ import { LoginModule } from './login/login.module';
     SideenavModule,
     FeedModule,
     ChatboxModule,
-    SidebarModule,FriendsModule,NavbarModule,GroupsModule,ChatwindowModule,ProfileModule,RegisterModule,LoginModule
+    SidebarModule,FriendsModule,NavbarModule,GroupsModule,ChatwindowModule,ProfileModule,RegisterModule,LoginModule,HttpClientModule,FormsModule
 
 
   ],

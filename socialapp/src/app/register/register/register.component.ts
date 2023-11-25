@@ -1,11 +1,9 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
+
 @Component({
   selector: 'app-register',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
@@ -13,14 +11,23 @@ export class RegisterComponent {
   username: string = '';
   email: string = '';
   password: string = '';
-  constructor(private router: Router) {}
+  router: any;
 
-  submitForm(event: Event) {
-    event.preventDefault();
-    // Implement your form submission logic here
-    console.log('Form submitted!');
-  }
-  isRegisterRoute(): boolean {
-    return this.router.url === '/register';
-  }
+  constructor(private http: HttpClient) { }
+
+submitForm(event: Event) {
+  event.preventDefault();
+
+  let params = new HttpParams()
+    .set('username', this.username)
+    .set('email', this.email)
+    .set('password', this.password);
+
+  const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+  this.http.post('http://localhost/freshstart/SocialApp/socialapp/src/app/register/register/register.php', params.toString(), { headers }).subscribe({
+    next: response => console.log('Server response: ', response),
+    error: error => console.log('Server error: ', error)
+  });
+}
 }

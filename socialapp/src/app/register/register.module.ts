@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [],
+  declarations: [RegisterComponent],
   imports: [
-    CommonModule,RegisterComponent
+    CommonModule,FormsModule
   ],
   exports: [RegisterComponent]
 })
