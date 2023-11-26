@@ -16,6 +16,6 @@
 
 <ng-template #loginTemplate>
   <!-- Displayed when the user is not logged in -->
-  <app-login (onSubmit)="login()"></app-login>
-  <app-register></app-register>
+  <app-login (onSubmit)="login()" *ngIf="isRegisterRoute2()"></app-login>
 </ng-template>
+<app-register *ngIf="isRegisterRoute()"></app-register>

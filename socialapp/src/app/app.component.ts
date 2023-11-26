@@ -1,7 +1,7 @@
+// app.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-
 
 @Component({
   selector: 'app-root',
@@ -26,6 +26,16 @@ export class AppComponent {
   logout() {
     // Perform your logout logic here
     this.isLoggedIn = false;
-     // Navigate to the login page after logout
-     this.router.navigate(['/login']); // Replace with your actual route path
-  }}
+    // Navigate to the login page after logout
+    this.router.navigate(['/login']); // Replace with your actual route path
+  }
+  isRegisterRoute3() {
+    return this.router.url === '/feed';
+  }
+  isRegisterRoute2() {
+    return this.router.url === '/login';
+  }
+  isRegisterRoute() {
+    return this.router.url === '/register';
+  }
+}
