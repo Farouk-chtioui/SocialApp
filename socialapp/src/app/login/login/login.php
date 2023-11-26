@@ -10,13 +10,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Log the $_POST variable
         error_log(print_r($_POST, true));
 
-        if(isset($_POST['username'])){
+        if(isset($_POST['username']) && isset($_POST['password'])){
             $username = $_POST['username'];
+            $password = $_POST['password'];
 
-            $sql = "SELECT * FROM users WHERE username = :username";
+            $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
             $stmt = $conn->prepare($sql);
 
             $stmt->bindValue(':username', $username);
+            $stmt->bindValue(':password', $password);
 
             $stmt->execute();
 
@@ -28,13 +30,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if($user) {
                 echo json_encode(['message' => 'User exists', 'user' => $user]);
             } else {
-                echo json_encode(['message' => 'User does not exist']);
+                echo json_encode(['message' => 'Invalid username or password']);
             }
         } else {
-            echo json_encode(['message' => 'Username not set in POST data']);
+            echo json_encode(['message' => 'Please provide both username and password']);
         }
     } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        echo json_encode(['message' => 'Error: ' . $e->getMessage()]);
     }
 }
 ?>

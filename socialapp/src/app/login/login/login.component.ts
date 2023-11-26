@@ -23,7 +23,8 @@ export class LoginComponent {
   errorMessage: string = '';
   submitForm() {
     const params = new HttpParams()
-      .set('username', this.username);
+      .set('username', this.username)
+      .set('password', this.password);  // Add password to the request parameters
   
     this.http.post<any>('http://localhost/freshstart/socialapp/src/app/login/login/login.php', params.toString(), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
@@ -37,7 +38,7 @@ export class LoginComponent {
           this.onSubmit.emit(true);
           this.router.navigate(['/feed']);
         } else {
-          this.errorMessage = 'User does not exist';
+          this.errorMessage = 'Invalid username or password';  // Update error message
         }
       },
       error: (error) => {
