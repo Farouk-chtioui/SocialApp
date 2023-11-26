@@ -1,13 +1,13 @@
 <!-- app.component.html -->
 
-<div *ngIf="isLoggedIn; else loginTemplate">
+<div *ngIf="isLoggedIn; else loginTemplate" >
   <!-- Displayed when the user is logged in -->
   <app-navbar></app-navbar>
   <div class="app-container">
     <app-sidenav (logoutClicked)="logout()"></app-sidenav>
     <!-- The main content of your application -->
     <div class="main-content">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="isLoggedIn"></router-outlet>
     </div>
 
     <app-sidebar></app-sidebar>
@@ -16,6 +16,6 @@
 
 <ng-template #loginTemplate>
   <!-- Displayed when the user is not logged in -->
-  <app-login (onSubmit)="login()" *ngIf="isRegisterRoute2()"></app-login>
+  <app-login (onSubmit)="login($event)" *ngIf="!isLoggedIn"></app-login>
+  <app-register *ngIf="isRegisterRoute()"></app-register>
 </ng-template>
-<app-register *ngIf="isRegisterRoute()"></app-register>

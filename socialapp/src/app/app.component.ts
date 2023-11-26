@@ -10,24 +10,20 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'SocialApp';
-  isLoggedIn: boolean = false;
+  isLoggedIn: boolean = true;
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  login() {
-    // Perform your login logic here (authentication, etc.)
-    // For now, we'll set isLoggedIn to true as a placeholder
-    this.isLoggedIn = true;
-
-    // Navigate to the main page after login
-    this.router.navigate(['/feed']); // Replace with your actual route path
+  login(isLoggedIn: boolean) {
+    this.isLoggedIn = isLoggedIn;
+    if (isLoggedIn) {
+      this.router.navigate(['/feed']);
+    }
   }
-
+  
   logout() {
-    // Perform your logout logic here
     this.isLoggedIn = false;
-    // Navigate to the login page after logout
-    this.router.navigate(['/login']); // Replace with your actual route path
+    this.router.navigate(['/login']);
   }
   isRegisterRoute3() {
     return this.router.url === '/feed';
