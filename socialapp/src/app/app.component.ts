@@ -12,25 +12,41 @@ export class AppComponent {
   title = 'SocialApp';
   isLoggedIn: boolean = true;
 
-  constructor(private router: Router, private authService: AuthService) {}
+// AppComponent
 
-  login(isLoggedIn: boolean) {
-    this.isLoggedIn = isLoggedIn;
-    if (isLoggedIn) {
-      this.router.navigate(['/feed']);
-    }
-  }
-  
-  logout() {
-    this.isLoggedIn = false;
+// AppComponent
+
+constructor(private router: Router, private authService: AuthService) {
+  this.isLoggedIn = this.authService.getLoginStatus();
+  if (this.isLoggedIn) {
+    this.router.navigate(['/feed']);
+  } else {
     this.router.navigate(['/login']);
   }
+}
+
+login(isLoggedIn: boolean) {
+  this.isLoggedIn = isLoggedIn;
+  this.authService.setLoginStatus(isLoggedIn);
+  if (isLoggedIn) {
+    this.router.navigate(['/feed']);
+  }
+}
+
+logout() {
+  this.isLoggedIn = false;
+  this.authService.setLoginStatus(false);
+  this.router.navigate(['/login']);
+}
   isRegisterRoute3() {
     return this.router.url === '/feed';
   }
-  isRegisterRoute2() {
-    return this.router.url === '/login';
-  }
+// app.component.ts
+
+isLoginRoute() {
+  // Return true if the current route is the login route
+  return this.router.url === '/login';
+}
   isRegisterRoute() {
     return this.router.url === '/register';
   }

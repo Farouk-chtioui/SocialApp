@@ -7,15 +7,16 @@
     <app-sidenav (logoutClicked)="logout()"></app-sidenav>
     <!-- The main content of your application -->
     <div class="main-content">
-      <router-outlet *ngIf="isLoggedIn"></router-outlet>
+      <router-outlet></router-outlet>
     </div>
 
     <app-sidebar></app-sidebar>
   </div>
 </div>
+<!-- app.component.html -->
 
 <ng-template #loginTemplate>
   <!-- Displayed when the user is not logged in -->
-  <app-login (onSubmit)="login($event)" *ngIf="!isLoggedIn"></app-login>
+  <app-login *ngIf="isLoginRoute()" (onSubmit)="login($event)"></app-login>
   <app-register *ngIf="isRegisterRoute()"></app-register>
 </ng-template>
