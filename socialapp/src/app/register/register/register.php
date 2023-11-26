@@ -12,26 +12,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $conn = mysqli_connect('localhost', 'root', '', 'social-app');
+    try {
+        $conn = new PDO("mysql:host=localhost;dbname=social-app", 'root', '');
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if (!$conn) {
-        die('Connection Failed:' . mysqli_connect_error());
-    }
+        if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
 
-    if(isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])){
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $email = mysqli_real_escape_string($conn, $_POST['email']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
+            $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
+            $stmt = $conn->prepare($sql);
 
-        $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $password);
 
-        if (mysqli_query($conn, $sql)) {
+            $stmt->execute();
+
             echo json_encode(['message' => 'Registration Successful']);
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
-    } else {
-        echo json_encode(['message' => 'Data not set']);
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
-} 
+}
 ?>
