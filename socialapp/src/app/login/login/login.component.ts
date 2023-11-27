@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +14,21 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private router: Router, private http: HttpClient) { }
-
+  
+  constructor(private router: Router, private http: HttpClient,private sharedService: SharedService) { }
+  ngOnInit() {
+    // Use the service to get the shared variable
+    const sharedVariable = this.sharedService.getSharedVariable();
+    const sharedVariable2 = this.sharedService.getSecondSharedVariable();
+    console.log(sharedVariable);
+  }
   @Output() onSubmit: EventEmitter<any> = new EventEmitter();
 
   username: string = '';  // Changed from email to username
   password: string = '';
   clickedd: boolean = true;
   errorMessage: string = '';
+  
   submitForm() {
     const params = new HttpParams()
       .set('username', this.username)
@@ -35,6 +43,8 @@ export class LoginComponent {
   
         if (response && response.message === 'User exists') {
           console.log('User exists');
+          this.sharedService.setSharedVariable(response.user.Username);  // Set the shared variable
+          this.sharedService.setSecondSharedVariable(response.user.Email);  // Set the shared variable
           this.onSubmit.emit(true);
           this.router.navigate(['/feed']);
         } else {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SharedService } from 'src/app/shared.service';
 
 
 @Component({
@@ -11,7 +12,16 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
+  username: string = '';
+  email: string = '';
 
+  constructor(private sharedService: SharedService) { }
+  ngOnInit() {
+    // Use the service to get the shared variable
+    this.username = this.sharedService.getSharedVariable();
+    this.email=this.sharedService.getSecondSharedVariable();
+    console.log(this.username);
+  }
   // Properties for storing course and interest data
   courses: string[] = [];
   interests: string[] = [];
