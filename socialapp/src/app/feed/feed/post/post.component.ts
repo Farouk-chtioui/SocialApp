@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { SharedService } from 'src/app/shared.service';
 
 interface Comment {
   user: string;
@@ -32,17 +33,25 @@ export class PostComponent {
   comments: Comment[] = []; // Ensure there's only one declaration with the correct type  
   
   // Add a variable for the user's name
-  userName: string = 'UserName';
+  username: string = '';
+
+
+
 
    // Variable to store the posting time
    postTime: Date = new Date();
 
    @ViewChild('dummyElement') dummyElement: ElementRef;
    @ViewChild('addedComment') addedComment: ElementRef;
-   constructor() {
+   constructor(private sharedService: SharedService) {
     // Initialize dummyElement here if needed
      this.dummyElement = new ElementRef(null); // Example initialization
      this.addedComment = new ElementRef(null);
+  }
+  ngOnInit() {
+    // Use the service to get the shared variable
+    this.username = this.sharedService.getSharedVariable();
+    console.log(this.username);
   }
   toggleLikePost() {
     this.userLiked = !this.userLiked;
@@ -62,7 +71,7 @@ export class PostComponent {
   addComment() {
     if (this.commentText.trim() !== '') {
       this.comments.push({
-        user: this.userName,
+        user: this.username,
         text: this.commentText,
         likeCount: 0,
         dislikeCount: 0, // Add dislikeCount property
@@ -117,7 +126,7 @@ export class PostComponent {
   
     if (responseText.trim() !== '') {
       comment.responses.push({
-        user: this.userName,
+        user: this.username,
         text: responseText
       });
       

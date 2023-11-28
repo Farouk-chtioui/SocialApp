@@ -1,6 +1,7 @@
 import { Component, HostListener,Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared.service';
 //import { LoginComponent } from '@app/login/login.component';
 
 
@@ -13,8 +14,14 @@ export class SidenavComponent {
   @Output() logoutClicked = new EventEmitter<void>();
 
   isLoggedIn: boolean = true; // Initialize with the actual initial state
+  username: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router,private sharedService: SharedService) {}
+  ngOnInit() {
+    // Use the service to get the shared variable
+    this.username = this.sharedService.getSharedVariable();
+    console.log(this.username);
+  }
 
   navigateToProfile() {
     this.router.navigate(['/profile']);
