@@ -5,11 +5,11 @@ import { PostComponent } from './feed/post/post.component';
 
 @NgModule({
   declarations: [
-   
+    FeedComponent
   ],
   imports: [
     CommonModule
-    ,FeedComponent,
+    ,
     PostComponent
     
   ],

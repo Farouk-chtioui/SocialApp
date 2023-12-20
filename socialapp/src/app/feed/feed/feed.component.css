@@ -1,45 +1,33 @@
-
-.wrapper {
-  background-color: #282a36;
-  height: 100vh;
-
-}
-.feed {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  margin: 20px auto 0; /* Added 20px margin to the top, 0 margin to the right and bottom, and auto margin to the left */
-  padding: 20px;
-  margin-top: 120px;
-  background-color: #282a36;
-  margin-left: 80%;
- 
+.post {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    margin-top: 120px; /* Adjust the value as needed */
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
-  .feed {
-    justify-content: center;
-    align-items: center;
-    width: 100%; /* Adjust the width for smaller screens */
-    margin-top: 248px;
-    margin-left: -50px;
-  }
-  .wrapper{
-    margin-top:-30px;
+.post-header {
+    margin-bottom: 20px;
 }
-}
-@media screen and (min-width: 769px) and (max-width: 1080px) {
-  .feed {
-    margin-top: 120px;
-    margin-left: 8%;
-  }
-}
-@media screen and (min-width: 1081px) and (max-width: 1440px) {
-  
-  .feed{
-    margin-right: 34%;
-  }
 
+.post-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #888;
+}
+
+.post-content {
+    text-align: center;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
 }

@@ -1,21 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms'; // Import NgForm
 import { SharedService } from 'src/app/shared.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-interface Comment {
-  user: string;
-  text: string;
-  likeCount: number;
-  dislikeCount: number; // Add dislikeCount property
-  loveCount: number;
-  userLiked: boolean;
-  userDisliked: boolean; // Add userDisliked property
-  userLoved: boolean;
-  responding?: boolean;
-  responseText?: string;
-  responses: { user: string; text: string }[];
-}
+
+
 @Component({
   selector: 'app-post',
   standalone: true,
@@ -24,126 +14,46 @@ interface Comment {
   styleUrls: ['./post.component.css']
 })
 export class PostComponent {
-  likeCount: number = 0;
-  loveCount: number = 0;
-  userLiked: boolean = false;
-  userLoved: boolean = false;
-  commentFormVisible: boolean = false; // Add a variable to track the visibility of the comment form
-  commentText: string = ''; // Variable to store the current comment
-  comments: Comment[] = []; // Ensure there's only one declaration with the correct type  
-  
-  // Add a variable for the user's name
   username: string = '';
-
-
-
-
-   // Variable to store the posting time
-   postTime: Date = new Date();
-
-   @ViewChild('dummyElement') dummyElement: ElementRef;
-   @ViewChild('addedComment') addedComment: ElementRef;
-   constructor(private sharedService: SharedService) {
-    // Initialize dummyElement here if needed
-     this.dummyElement = new ElementRef(null); // Example initialization
-     this.addedComment = new ElementRef(null);
-  }
+  useridd:number=0;
+  constructor(private http: HttpClient,private sharedService: SharedService) { }
   ngOnInit() {
-    // Use the service to get the shared variable
     this.username = this.sharedService.getSharedVariable();
+    this.useridd=this.sharedService.getThirdSharedVariable();
     console.log(this.username);
   }
-  toggleLikePost() {
-    this.userLiked = !this.userLiked;
-    this.likeCount += this.userLiked ? 1 : -1;
+  selectedFile: File | null = null;
+
+  onFileSelected(event?: any) {
+    this.selectedFile = <File>event.target.files[0];
   }
-
-  toggleLovePost() {
-    this.userLoved = !this.userLoved;
-    this.loveCount += this.userLoved ? 1 : -1;
-  }
-
-  toggleCommentForm() {
-    this.commentFormVisible = !this.commentFormVisible;
-  }
-
-
-  addComment() {
-    if (this.commentText.trim() !== '') {
-      this.comments.push({
-        user: this.username,
-        text: this.commentText,
-        likeCount: 0,
-        dislikeCount: 0, // Add dislikeCount property
-        loveCount: 0,
-        userLiked: false,
-        userDisliked: false, // Add userDisliked property
-        userLoved: false,
-        responding: false,
-        responses: []
-      });
-
-      // Close the comment form after submitting
-       this.commentFormVisible = false;
-      // Clear the commentText variable for the next comment
-      this.commentText = '';
-      this.dummyElement.nativeElement.focus();
-      
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.postToServer(form.value);
+      form.reset();
     }
   }
-  toggleLikeComment(comment: any) {
-    comment.userLiked = !comment.userLiked;
-    comment.likeCount += comment.userLiked ? 1 : -1;
-  }
-
-   // Toggle disliking a comment
-   toggleDislikeComment(comment: Comment) {
-    if (comment.userDisliked) {
-      comment.dislikeCount--;
-    } else {
-      comment.dislikeCount++;
+  postToServer(postData: any) {
+    const formData = new FormData();
+    formData.append('userID', postData.userID);
+    formData.append('caption', postData.caption);
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile, this.selectedFile.name);
     }
-    comment.userDisliked = !comment.userDisliked;
-  }
-
-  toggleLoveComment(comment: any) {
-    comment.userLoved = !comment.userLoved;
-    comment.loveCount += comment.userLoved ? 1 : -1;
-  }
-
-  toggleResponding(comment: Comment) {
-    comment.responding = !comment.responding;
-
-    // Reset responseText when toggling out of responding
-    if (!comment.responding) {
-      comment.responseText = '';
-    }
-  }
-  // Add a response to a comment
-  addResponse(comment: any) {
-    // Assuming you have a responseText property in the Comment interface
-    const responseText = comment.responseText ?? ''; // Use an empty string if comment.responseText is undefined
   
-    if (responseText.trim() !== '') {
-      comment.responses.push({
-        user: this.username,
-        text: responseText
-      });
-      
-      // Close the response form after submitting
-       comment.responding = false;
-      // Clear the responseText variable for the next response
-        comment.responseText = '';
-
-         // Focus on the added comment to bring it into view
-    this.addedComment.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData)
+  .subscribe({
+    next: (response: any) => {
+      if (response.status === 'success') {
+        console.log('File uploaded successfully');
+      } else {
+        console.error('Error:', response.errors);
+      }
+    },
+    error: error => {
+      console.error('Error:', error);
     }
+  });
   }
 
-  // Function to format the posting time
-  formatPostTime(): string {
-    // You can customize the formatting based on your preference
-    return this.postTime.toLocaleString();
-  }
-  
 }

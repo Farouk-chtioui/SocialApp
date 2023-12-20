@@ -6,9 +6,12 @@ import { Injectable } from '@angular/core';
 export class SharedService {
   private sharedVariable: string = '';  // Initialize sharedVariable with an empty string
   private secondSharedVariable: string = '';  // Initialize sharedVariable with an empty string
+  private thirdSharedVariable: number=0;  // Initialize sharedVariable with an empty string
 
   constructor() { }
-
+setThirdSharedVariable(value: number) {
+    this.thirdSharedVariable = value;
+  }
   setSharedVariable(value: string) {
     this.sharedVariable = value;
   }
@@ -21,5 +24,8 @@ export class SharedService {
   }
   getSecondSharedVariable() {
     return this.secondSharedVariable;
+  }
+  getThirdSharedVariable() {
+    return this.thirdSharedVariable;
   }
 }

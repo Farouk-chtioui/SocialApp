@@ -1,10 +1,21 @@
-<div class="wrapper">
-  <div class="feed">
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <app-post></app-post>
-    <!-- Add more <app-post></app-post> components for additional posts -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="post" *ngFor="let post of posts">
+        <div class="post-header">
+          <div class="user-info">
+            <img src="assets/profile-placeholder.png" alt="Profile picture" class="profile-pic">
+            <div class="user-details">
+              <h2 class="username">{{ post.username }}</h2>              
+              <p class="post-date">Posted on: {{ post.Post_Date }}</p>
+            </div>
+          </div>
+          <h2 class="post-title">{{ post.Caption }}</h2>
+        </div>
+        <div class="post-content">
+          <img [src]="post.Image_URL" alt="Post image" class="post-image img-fluid">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-  

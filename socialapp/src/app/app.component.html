@@ -3,7 +3,6 @@
 <div *ngIf="isLoggedIn; else loginTemplate" >
   <!-- Displayed when the user is logged in -->
   <app-navbar></app-navbar>
-  <div class="app-container">
     <app-sidenav (logoutClicked)="logout()"></app-sidenav>
     <!-- The main content of your application -->
     <div class="main-content">
@@ -11,7 +10,7 @@
     </div>
 
     <app-sidebar></app-sidebar>
-  </div>
+
 </div>
 <!-- app.component.html -->
 

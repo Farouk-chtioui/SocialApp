@@ -44,7 +44,8 @@ export class LoginComponent {
         if (response && response.message === 'User exists') {
           console.log('User exists');
           this.sharedService.setSharedVariable(response.user.Username);  // Set the shared variable
-          this.sharedService.setSecondSharedVariable(response.user.Email);  // Set the shared variable
+          this.sharedService.setSecondSharedVariable(response.user.Email);
+          this.sharedService.setThirdSharedVariable(response.user.UserID);
           this.onSubmit.emit(true);
           this.router.navigate(['/feed']);
         } else {
