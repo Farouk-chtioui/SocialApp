@@ -35,7 +35,6 @@ export class PostComponent {
       this.postToServer(form.value);
       form.reset();
     }
-    this.postSubmitted.emit();
 
   }
   postToServer(postData: any) {
@@ -47,19 +46,9 @@ export class PostComponent {
     }
   
     this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData)
-    .subscribe({
-      next: (response: any) => {
-        if (response.status === 'success') {
-          console.log('File uploaded successfully');
-          this.postSubmitted.emit(); // Emit the event
-        } else {
-          console.error('Error:', response.errors);
-        }
-      },
-      error: error => {
-        console.error('Error:', error);
-      }
-    });
+      .subscribe(() => {
+        this.postSubmitted.emit(); // Emit the event after the post request has completed
+      });
   }
 
 }
