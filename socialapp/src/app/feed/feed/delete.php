@@ -17,7 +17,6 @@ if ($db->connect_error) {
 $postId = $_GET['id'];
 $currentUserId = $_GET['userId']; // Assuming you're passing the current user's ID as a parameter
 
-// First, get the UserID of the post
 $result = $db->query("SELECT UserID FROM Posts WHERE PostID = $postId");
 $post = $result->fetch_assoc();
 

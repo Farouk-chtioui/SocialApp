@@ -35,6 +35,8 @@ export class PostComponent {
       this.postToServer(form.value);
       form.reset();
     }
+    this.postSubmitted.emit();
+
   }
   postToServer(postData: any) {
     const formData = new FormData();

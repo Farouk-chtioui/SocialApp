@@ -21,13 +21,12 @@ export class FeedComponent implements OnInit {
       switchMap(() => this.getPosts()) // Switch to new getPosts observable on each refresh
     ).subscribe(posts => {
       console.log(posts);  // Log the posts to the console
-      this.posts = posts;
+      this.posts = posts.reverse();
     });
   }
   refreshPosts() {
-    this.getPosts().subscribe(posts => {
-      this.posts = posts;
-    });
+    this.refreshFeed.next(); // Emit an event to refresh the feed
+
   }
   getPosts(): Observable<any> {
     return this.http.get('http://localhost/freshstart/socialapp/src/app/feed/feed/feed.php');
