@@ -37,7 +37,7 @@ export class FeedComponent implements OnInit {
     this.http.delete(`http://localhost/freshstart/socialapp/src/app/feed/feed/delete.php?id=${postId}&userId=${userId}`)
       .subscribe(() => {
         this.posts = this.posts.filter(post => post.PostID !== postId);
-        this.refreshFeed.next();
+        this.refreshPosts(); // Call refreshPosts here
       });
   }
 }

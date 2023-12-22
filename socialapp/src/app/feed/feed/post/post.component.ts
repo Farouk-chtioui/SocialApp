@@ -16,7 +16,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class PostComponent {
   @Output() postSubmitted = new EventEmitter<void>();
-  
+  @Output() newPost = new EventEmitter<any>();
 
   username: string = '';
   useridd:number=0;
@@ -33,10 +33,17 @@ export class PostComponent {
   }
   onSubmit(postForm: NgForm) {
     const postData = {
-      userID: this.useridd, // Use this.useridd as the user ID
+      userID: this.useridd,
       caption: postForm.value.caption,
       image: this.selectedFile
     };
+  
+    // Emit the new post data
+    this.newPost.emit({
+      userID: this.useridd,
+      Caption: postForm.value.caption,
+      Image_URL: this.selectedFile ? URL.createObjectURL(this.selectedFile) : null
+    });
   
     this.postToServer(postData);
   
@@ -53,7 +60,7 @@ export class PostComponent {
   
     this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData)
       .subscribe(() => {
-        this.postSubmitted.emit(); // Emit the event after the post request has completed
+        this.postSubmitted.emit();
       });
   }
 

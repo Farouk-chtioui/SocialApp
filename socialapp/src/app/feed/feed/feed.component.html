@@ -1,6 +1,6 @@
 <div class="container-top" style="padding-top: 150px;">
 
-  <app-post (postSubmitted)="refreshPosts()"></app-post>
+  <app-post (newPost)="posts.unshift($event)"></app-post>  
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -18,7 +18,7 @@
             <div class="dots"></div>
             <div class="dots"></div>
             <div class="dots"></div>
-              <i class="fas fa-trash trash-icon" (click)="deletePost(post.PostID); refreshPosts()"></i>
+              <i class="fas fa-trash trash-icon" (click)="refreshPosts();deletePost(post.PostID);"></i>
             </div>
         </div>
         <div class="post-content">
