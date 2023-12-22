@@ -2,6 +2,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { SharedService } from './shared.service';
 
 @Component({
   selector: 'app-root',
@@ -16,12 +17,20 @@ export class AppComponent {
 
 // AppComponent
 
-constructor(private router: Router, private authService: AuthService) {
+constructor(private router: Router, private authService: AuthService,private sharedService: SharedService) {
   this.isLoggedIn = this.authService.getLoginStatus();
   if (this.isLoggedIn) {
     this.router.navigate(['/feed']);
   } else {
     this.router.navigate(['/login']);
+  }
+}
+ngOnInit() {
+  const user = JSON.parse(localStorage.getItem('user') as string);
+  if (user) {
+    this.sharedService.setSharedVariable(user.Username);
+    this.sharedService.setSecondSharedVariable(user.Email);
+    this.sharedService.setThirdSharedVariable(user.UserID);
   }
 }
 

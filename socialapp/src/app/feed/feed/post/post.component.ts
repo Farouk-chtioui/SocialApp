@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms'; // Import NgForm
 import { SharedService } from 'src/app/shared.service';
@@ -13,7 +13,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
+
 export class PostComponent {
+  @Output() postSubmitted = new EventEmitter<void>();
+
   username: string = '';
   useridd:number=0;
   constructor(private http: HttpClient,private sharedService: SharedService) { }
@@ -42,18 +45,19 @@ export class PostComponent {
     }
   
     this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData)
-  .subscribe({
-    next: (response: any) => {
-      if (response.status === 'success') {
-        console.log('File uploaded successfully');
-      } else {
-        console.error('Error:', response.errors);
+    .subscribe({
+      next: (response: any) => {
+        if (response.status === 'success') {
+          console.log('File uploaded successfully');
+          this.postSubmitted.emit(); // Emit the event
+        } else {
+          console.error('Error:', response.errors);
+        }
+      },
+      error: error => {
+        console.error('Error:', error);
       }
-    },
-    error: error => {
-      console.error('Error:', error);
-    }
-  });
+    });
   }
 
 }

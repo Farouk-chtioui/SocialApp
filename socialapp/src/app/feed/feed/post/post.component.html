@@ -1,19 +1,28 @@
-<div class="text-center">
-  <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
-    <div class="form-group">
-      <input type="number" id="userID" name="userID" ngModel="{{useridd}}" required hidden>
-      </div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Create Post</h5>
+          <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
+            <div class="form-group">
+              <input type="number" id="userID" name="userID" ngModel="{{useridd}}" required hidden>
+            </div>
 
-    <div class="form-group">
-      <label for="caption">Caption:</label>
-      <input type="text" id="caption" name="caption" ngModel required>
-    </div>
+            <div class="form-group">
+              <label for="caption">Caption:</label>
+              <input type="text" id="caption" name="caption" ngModel required class="form-control">
+            </div>
 
-    <div class="form-group">
-      <label for="imageURL">Image URL:</label>
-      <input type="file" id="image" name="image" (change)="onFileSelected($event)" ngModel>
+            <div class="form-group">
+              <label for="imageURL">Image URL:</label>
+              <input type="file" id="image" name="image" (change)="onFileSelected($event)" ngModel class="form-control-file">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Create Post</button>
+          </form>
         </div>
-
-    <button type="submit">Create Post</button>
-  </form>
+      </div>
+    </div>
+  </div>
 </div>

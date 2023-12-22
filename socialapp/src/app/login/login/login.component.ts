@@ -48,13 +48,12 @@ export class LoginComponent {
           this.sharedService.setThirdSharedVariable(response.user.UserID);
           this.onSubmit.emit(true);
           this.router.navigate(['/feed']);
+  
+          // Store user information in localStorage
+          localStorage.setItem('user', JSON.stringify(response.user));
         } else {
           this.errorMessage = 'Invalid username or password';  // Update error message
         }
-      },
-      error: (error) => {
-        console.error('Error:', error);
-        this.errorMessage = 'An error occurred during login';
       }
     });
   }

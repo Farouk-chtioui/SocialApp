@@ -15,7 +15,7 @@ if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
 
-$sql = "SELECT Posts.*, Users.username FROM Posts INNER JOIN Users ON Posts.UserID = Users.UserID";
+$sql = "SELECT Posts.*, Users.username, Users.Profile_Picture FROM Posts INNER JOIN Users ON Posts.UserID = Users.UserID";
 $result = $db->query($sql);
 
 $posts = array();

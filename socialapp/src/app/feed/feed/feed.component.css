@@ -1,3 +1,7 @@
+app-post {
+    margin-top: 20px; /* Adjust this value as needed */
+}
+
 .post {
     border: 1px solid #ddd;
     margin-bottom: 20px;
@@ -31,3 +35,90 @@
     max-width: 100%;
     height: auto;
 }
+.reactions {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .reaction-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    color: #606770; /* Facebook's icon color */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out; /* Transition for smooth opacity change */
+    position: absolute;
+    white-space: nowrap;
+  }
+  
+  .reaction-btn:first-child {
+    position: relative;
+    opacity: 1;
+  }
+  
+  .reactions:hover .reaction-btn {
+    opacity: 1;
+    position: relative;
+  }
+  .like-btn {
+    color: #2d88ff; 
+  }
+  
+  .like-btn:hover {
+    color: #1d70ff; 
+  }
+  
+  .love-btn {
+    color: #f25268;
+  }
+  
+  .love-btn:hover {
+    color: #f23250; 
+  }
+  .reaction-btn {
+
+    transition: transform 0.3s ease-in-out; 
+  }
+  
+  .reaction-btn:hover {
+    transform: scale(1.2); /* Add this line */
+  }
+  .comment-btn {
+    color: #606770; /* Facebook's icon color */
+  }
+  
+  .comment-btn:hover {
+    color: #3578E5; /* Facebook's primary color */
+  }
+  .menu {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+  
+  .dots {
+    width: 5px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 50%;
+    margin: 2px;
+  }
+  
+  .trash-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: red;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .menu:hover .trash-icon {
+    opacity: 1;
+  }
+  
+  .menu:hover .dots {
+    opacity: 0;
+  }
