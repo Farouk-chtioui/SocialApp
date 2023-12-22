@@ -3,15 +3,16 @@ body {
 }
 
 .wrapper {
+    display: flex;
+    justify-content: center;
     background-color: #282a36;
-    height: 1500px;
+    height: 100vh; /* Adjust as needed */
     color: #fff;
 }
 
 .container {
+    /* Remove margin and width properties */
     padding-top: 160px; /* Adjusted padding-top for better visual balance */
-    margin-left: 70%;
-    width: 800px;
 }
 
 .input-group {

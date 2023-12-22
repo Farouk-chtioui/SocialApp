@@ -13,6 +13,8 @@ app-post {
 }
 
 .post-header {
+  position: relative; /* Add this */
+
     margin-bottom: 20px;
 }
 
@@ -92,9 +94,9 @@ app-post {
     color: #3578E5; /* Facebook's primary color */
   }
   .menu {
-    position: relative;
-    width: 30px;
-    height: 30px;
+    position: absolute;
+    top: 0;
+    right: 0;
     cursor: pointer;
   }
   

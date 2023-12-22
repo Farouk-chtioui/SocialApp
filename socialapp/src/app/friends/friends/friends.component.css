@@ -20,6 +20,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background-color: #282a36;
   margin: 10px; /* Add margin for spacing between cards */
+
 }
 .card-margin {
   margin-right: 10px; /* Adjust this value as needed */
