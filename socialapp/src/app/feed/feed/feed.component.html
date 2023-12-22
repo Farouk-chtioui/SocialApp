@@ -18,8 +18,8 @@
             <div class="dots"></div>
             <div class="dots"></div>
             <div class="dots"></div>
-            <i class="fas fa-trash trash-icon" (click)="deletePost(post.PostID)"></i>
-          </div>
+              <i class="fas fa-trash trash-icon" (click)="deletePost(post.PostID); refreshPosts()"></i>
+            </div>
         </div>
         <div class="post-content">
           <img *ngIf="post.Image_URL" [src]="post.Image_URL" alt="Post image" class="post-image img-fluid">

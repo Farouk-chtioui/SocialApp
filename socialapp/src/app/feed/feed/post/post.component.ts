@@ -16,6 +16,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class PostComponent {
   @Output() postSubmitted = new EventEmitter<void>();
+  
 
   username: string = '';
   useridd:number=0;
@@ -30,12 +31,17 @@ export class PostComponent {
   onFileSelected(event?: any) {
     this.selectedFile = <File>event.target.files[0];
   }
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.postToServer(form.value);
-      form.reset();
-    }
-
+  onSubmit(postForm: NgForm) {
+    const postData = {
+      userID: this.useridd, // Use this.useridd as the user ID
+      caption: postForm.value.caption,
+      image: this.selectedFile
+    };
+  
+    this.postToServer(postData);
+  
+    postForm.resetForm(); // Reset the form after submission
+    this.selectedFile = null; // Clear the selected file
   }
   postToServer(postData: any) {
     const formData = new FormData();
