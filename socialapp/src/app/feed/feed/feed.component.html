@@ -1,13 +1,13 @@
 <div class="container-top" style="padding-top: 150px;">
 
-  <app-post (newPost)="posts.unshift($event)"></app-post>  
-<div class="container">
+  <app-post (postSubmitted)="refreshPosts()"></app-post>
+  <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="post" *ngFor="let post of posts">
         <div class="post-header">
           <div class="user-info">
-            <img src="assets/profile-placeholder.png" alt="Profile picture" class="profile-pic">
+            <img src="" alt="Profile picture" class="profile-pic">
             <div class="user-details">
               <h2 class="username">{{ post.username }}</h2>              
               <p class="post-date">Posted on: {{ post.Post_Date }}</p>
@@ -18,7 +18,7 @@
             <div class="dots"></div>
             <div class="dots"></div>
             <div class="dots"></div>
-              <i class="fas fa-trash trash-icon" (click)="refreshPosts();deletePost(post.PostID);"></i>
+              <i class="fas fa-trash trash-icon" (click)="deletePost(post.PostID);"></i>
             </div>
         </div>
         <div class="post-content">

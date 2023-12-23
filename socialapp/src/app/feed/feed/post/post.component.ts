@@ -58,10 +58,16 @@ export class PostComponent {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
   
-    this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData)
-      .subscribe(() => {
-        this.postSubmitted.emit();
-      });
+    this.http.post('http://localhost/freshstart/socialapp/src/app/feed/feed/post/post.php', formData, {responseType: 'text'})
+    .subscribe((response) => {
+      // Manually parse the JSON part of the response
+      const jsonStart = response.indexOf('{');
+      const jsonEnd = response.lastIndexOf('}') + 1;
+      const jsonResponse = JSON.parse(response.substring(jsonStart, jsonEnd));
+  
+      // Emit the event here, after the HTTP request has completed
+      this.postSubmitted.emit(jsonResponse);
+    });
   }
 
 }

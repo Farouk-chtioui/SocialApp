@@ -15,17 +15,17 @@ export class FeedComponent implements OnInit {
   private refreshFeed = new Subject<void>();
 
   constructor(private http: HttpClient,private sharedService: SharedService) { }
-  ngOnInit() {
-    this.refreshFeed.pipe(
-      startWith(null), // Trigger the initial fetch
-      switchMap(() => this.getPosts()) // Switch to new getPosts observable on each refresh
-    ).subscribe(posts => {
-      console.log(posts);  // Log the posts to the console
-      this.posts = posts.reverse();
-    });
-  }
+ngOnInit() {
+  this.refreshFeed.pipe(
+    startWith(null), 
+    switchMap(() => this.getPosts()) 
+  ).subscribe(posts => {
+    console.log(posts); 
+    this.posts = posts.reverse();
+  });
+}
   refreshPosts() {
-    this.refreshFeed.next(); // Emit an event to refresh the feed
+    this.refreshFeed.next();
 
   }
   getPosts(): Observable<any> {
@@ -33,11 +33,14 @@ export class FeedComponent implements OnInit {
   }
 
   deletePost(postId: number) {
+    // Remove the post from the local array first
+    this.posts = this.posts.filter(post => post.PostID !== postId);
+  
     const userId = this.sharedService.getThirdSharedVariable();
     this.http.delete(`http://localhost/freshstart/socialapp/src/app/feed/feed/delete.php?id=${postId}&userId=${userId}`)
       .subscribe(() => {
-        this.posts = this.posts.filter(post => post.PostID !== postId);
-        this.refreshPosts(); // Call refreshPosts here
+      }, error => {
+        this.refreshPosts();
       });
   }
 }
