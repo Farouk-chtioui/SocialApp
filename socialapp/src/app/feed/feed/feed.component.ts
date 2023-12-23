@@ -13,6 +13,7 @@ export class FeedComponent implements OnInit {
   posts: any[] = [];
   authService: any;
   private refreshFeed = new Subject<void>();
+  profilePicture?: string;
 
   constructor(private http: HttpClient,private sharedService: SharedService) { }
 ngOnInit() {
@@ -23,6 +24,8 @@ ngOnInit() {
     console.log(posts); 
     this.posts = posts.reverse();
   });
+  this.sharedService.currentProfilePicture.subscribe(profilePicture => this.profilePicture = profilePicture);
+
 }
   refreshPosts() {
     this.refreshFeed.next();

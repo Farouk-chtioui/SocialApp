@@ -10,6 +10,22 @@
   align-items: center;
   
 }
+.upload-button {
+  display: none;
+}
+
+.upload-label {
+  padding: 10px;
+  color: white;
+  background-color: #282a36;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.upload-label:hover {
+  background-color: #2f313b;
+  transform: scale(1.05);
+}
 
 .card {
   margin-top: 150px;

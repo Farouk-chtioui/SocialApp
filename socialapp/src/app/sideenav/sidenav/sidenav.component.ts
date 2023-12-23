@@ -12,6 +12,7 @@ import { SharedService } from 'src/app/shared.service';
 })
 export class SidenavComponent {
   @Output() logoutClicked = new EventEmitter<void>();
+  profilePicture?: string;
 
   isLoggedIn: boolean = true; // Initialize with the actual initial state
   username: string = '';
@@ -21,6 +22,8 @@ export class SidenavComponent {
     // Use the service to get the shared variable
     this.username = this.sharedService.getSharedVariable();
     console.log(this.username);
+    this.sharedService.currentProfilePicture.subscribe(profilePicture => this.profilePicture = profilePicture);
+
   }
 
   navigateToProfile() {
@@ -35,6 +38,7 @@ export class SidenavComponent {
 
   onLogoutClick() {
     this.logoutClicked.emit();
+    localStorage.removeItem('profilePicture');
   }
 
   @HostListener('window:click', ['$event'])

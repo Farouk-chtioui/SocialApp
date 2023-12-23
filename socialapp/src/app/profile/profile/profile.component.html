@@ -4,12 +4,14 @@
   <div class="card">
       <div class="card-body">
           <div class="text-center">
-              <img src="assets/images/profilepic.png" alt="Profile Picture"
-                  class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
+            <img [src]="profilePicture" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
               <h4 class="card-title">UserName:{{username}}</h4>
               <p class="card-text">Email: {{email}}</p>
               <p class="card-text">Major: Computer Science</p>
-              <!-- Add more profile information here -->
+              <div class="mb-3">
+                <input type="file" id="photoUpload" accept="image/*" class="upload-button" (change)="uploadImage($event)">
+                <label for="photoUpload" class="form-label upload-label">Upload Photo</label>
+              </div>
           </div>
       </div>
   </div>
@@ -46,8 +48,9 @@
             <button class="drac-btn" (click)="addInterest()">Add Interest</button>
           </div>
           
+  
           
-
+          
       </div>
   </div>
 </div>
