@@ -33,6 +33,7 @@ export class FeedComponent implements OnInit {
     
       // Fetch the profile picture and comments for each post's user
       this.posts.forEach(post => {
+        
         this.http.get(`http://localhost/freshstart/socialapp/src/app/profile/profile/getprofile.php?UserID=${post.UserID}`)
         .subscribe((response: any) => {
           console.log(response);
