@@ -16,17 +16,29 @@ export class FeedComponent implements OnInit {
   profilePicture?: string;
 
   constructor(private http: HttpClient,private sharedService: SharedService) { }
-ngOnInit() {
-  this.refreshFeed.pipe(
-    startWith(null), 
-    switchMap(() => this.getPosts()) 
-  ).subscribe(posts => {
-    console.log(posts); 
-    this.posts = posts.reverse();
-  });
-  this.sharedService.currentProfilePicture.subscribe(profilePicture => this.profilePicture = profilePicture);
-
-}
+  ngOnInit() {
+    this.refreshFeed.pipe(
+      startWith(null), 
+      switchMap(() => this.getPosts()) 
+    ).subscribe(posts => {
+      console.log(posts); 
+      this.posts = posts.reverse();
+  
+      // Fetch the profile picture for each post's user
+      this.posts.forEach(post => {
+        this.http.get(`http://localhost/freshstart/socialapp/src/app/profile/profile/getprofile.php?UserID=${post.UserID}`)
+        .subscribe((response: any) => {
+          console.log(response);
+          if (response && response.path) {
+            post.profilePicture = response.path;
+          }
+        }, error => {
+          console.error(error);
+        });
+      });
+    });
+  
+  }
   refreshPosts() {
     this.refreshFeed.next();
 

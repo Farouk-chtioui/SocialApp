@@ -2,6 +2,7 @@ import { Component, HostListener,Output, EventEmitter} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SharedService } from 'src/app/shared.service';
+import { HttpClient } from '@angular/common/http';
 //import { LoginComponent } from '@app/login/login.component';
 
 
@@ -16,13 +17,21 @@ export class SidenavComponent {
 
   isLoggedIn: boolean = true; // Initialize with the actual initial state
   username: string = '';
-
-  constructor(private router: Router,private sharedService: SharedService) {}
+  useridd=this.sharedService.getThirdSharedVariable();
+  constructor(private router: Router,private sharedService: SharedService,private http: HttpClient) {}
   ngOnInit() {
     // Use the service to get the shared variable
     this.username = this.sharedService.getSharedVariable();
     console.log(this.username);
-    this.sharedService.currentProfilePicture.subscribe(profilePicture => this.profilePicture = profilePicture);
+    this.http.get(`http://localhost/freshstart/socialapp/src/app/profile/profile/getprofile.php?UserID=${this.useridd}`)
+    .subscribe((response: any) => {
+      console.log(response);
+      if (response && response.path) {
+        this.profilePicture = response.path;
+      }
+    }, error => {
+      console.error(error);
+    });
 
   }
 
