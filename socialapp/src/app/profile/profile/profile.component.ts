@@ -17,7 +17,7 @@ export class ProfileComponent {
   username: string = '';
   email: string = '';
   useridd:number=0;
-  profilePicture = 'assets/images/profilepic.png'; // Default profile picture
+  profilePicture = 'assets/images/profilepic.png'; 
 
   constructor(private sharedService: SharedService,private http: HttpClient) { }
   ngOnInit() {

@@ -34,4 +34,7 @@ setThirdSharedVariable(value: number) {
     this.profilePictureSource.next(profilePicture);
     localStorage.setItem('profilePicture', profilePicture);
   }
+  getPofilePicture() {
+    return this.profilePictureSource;
+  }
 }

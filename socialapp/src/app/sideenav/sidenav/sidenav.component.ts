@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SidenavComponent {
   @Output() logoutClicked = new EventEmitter<void>();
-  profilePicture?: string;
+  profilePicture = 'assets/images/profilepic.png'; 
 
   isLoggedIn: boolean = true; // Initialize with the actual initial state
   username: string = '';
