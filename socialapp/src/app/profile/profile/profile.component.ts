@@ -69,6 +69,7 @@ export class ProfileComponent {
     this.http.post('http://localhost/freshstart/socialapp/src/app/profile/profile/profile.php', formData).subscribe((response: any) => {
       if (response && response.path) {
         this.profilePicture = response.path;
+        location.reload();
       }
       console.log(response);
     }, error => {

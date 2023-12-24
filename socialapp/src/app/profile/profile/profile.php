@@ -31,13 +31,16 @@ if(isset($_POST['UserID']) && isset($_FILES['image'])){
     }
   
     if($file_size > 2097152){
-        $errors[]='File size must be exactly 2 MB';
+        $errors[]='File size must be less than 2 MB';
     }
     if(empty($file_name)) {
         $file_name = "assets/images/profilepic.png"; // replace with your default picture path
     }
-  
+    
     if(empty($errors)==true){
+        if (!is_dir('profileImg')) {
+            mkdir('profileImg', 0777, true);
+        }
         move_uploaded_file($file_tmp,"profileImg/".$file_name);
         $profile_picture = "http://localhost/freshstart/socialapp/src/app/profile/profile/profileImg/".$file_name;
     
@@ -47,6 +50,6 @@ if(isset($_POST['UserID']) && isset($_FILES['image'])){
     
         echo json_encode(['path' => $profile_picture]);
     }else{
-        print_r($errors);
+        echo json_encode(['errors' => $errors]);
     }
 }
