@@ -54,7 +54,7 @@
                 </div>
               </div>
             </div>
-            <form class="comment-form" (submit)="postComment(useridd, post.PostID,$event)">
+            <form class="comment-form" (submit)="postComment(useridd, post.PostID, commentInput.value, $event)">
               <input type="text" placeholder="Write a comment" class="comment-input" #commentInput>
               <button type="submit" class="comment-btn">Comment</button>
             </form>

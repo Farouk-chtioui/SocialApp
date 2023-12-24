@@ -14,6 +14,8 @@ import { tap } from 'rxjs/operators';
 })
 export class FeedComponent implements OnInit {
   @ViewChild('commentInput') commentInput: ElementRef | undefined;
+  private commentInputs = new Map<number, ElementRef>();
+
   posts: any[] = [];
   authService: any;
   private refreshFeed = new Subject<void>();
@@ -72,11 +74,10 @@ export class FeedComponent implements OnInit {
         this.refreshPosts();
       });
   }
-  postComment(userId: number, postId: number, event: Event) {
+  postComment(userId: number, postId: number, commentText: string, event: Event) {
     event.preventDefault();
   
     const url = 'http://localhost/freshstart/socialapp/src/app/feed/feed/comments.php';
-    const commentText = this.commentInput?.nativeElement.value;
     const body = { userID: userId, postID: postId, commentText: commentText };
     const headers = { 'Content-Type': 'application/json' };
   
@@ -85,17 +86,12 @@ export class FeedComponent implements OnInit {
     this.http.post(url, body, { headers, responseType: 'text' }).subscribe(
       response => {
         console.log('Response from server:', response);
-        
+        this.refreshPosts(); // Refresh the posts after posting a comment
       },
       error => {
         console.error('Error:', error);
         alert('Could not post comment. Please try again later.');
       }
     );
-  
-
-    if (this.commentInput) {
-      this.commentInput.nativeElement.value = '';
-    }
   }
 }
