@@ -1,126 +1,140 @@
 app-post {
-    margin-top: 20px; /* Adjust this value as needed */
+  margin-top: 20px; /* Adjust this value as needed */
 }
-
+.container-top{
+background-color: #282a36;
+}
 .post {
-    border: 1px solid #ddd;
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    margin-top: 120px; /* Adjust the value as needed */
+border: 1px solid #44475a; /* Dracula grey */
+margin-bottom: 20px;
+padding: 20px;
+border-radius: 8px;
+background-color: #282a36; /* Dracula dark violet */
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+margin-top: 120px; /* Adjust the value as needed */
+color: #f8f8f2; /* Dracula text color */
 }
 
 .post-header {
-  position: relative; /* Add this */
+position: relative; /* Add this */
+margin-bottom: 20px;
+color: #f8f8f2; /* Dracula text color */
+border-bottom: 1px solid #44475a; 
 
-    margin-bottom: 20px;
 }
-
+.username {
+color: #bd93f9;
+}
 .post-title {
-    margin: 0;
-    font-size: 24px;
-    font-weight: bold;
+margin: 0;
+font-size: 24px;
+font-weight: bold;
+color: #f8f8f2; /* Dracula text color */
 }
 
 .post-date {
-    font-size: 14px;
-    color: #888;
+font-size: 14px;
+color: grey; /* Dracula text color */
 }
 
 .post-content {
-    text-align: center;
+text-align: center;
+color: #f8f8f2; /* Dracula text color */
 }
 
 .post-image {
-    max-width: 100%;
-    height: auto;
+max-width: 100%;
+height: auto;
 }
 .reactions {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .reaction-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 10px;
-    color: #606770; /* Facebook's icon color */
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out; /* Transition for smooth opacity change */
-    position: absolute;
-    white-space: nowrap;
-  }
-  
-  .reaction-btn:first-child {
-    position: relative;
-    opacity: 1;
-  }
-  
-  .reactions:hover .reaction-btn {
-    opacity: 1;
-    position: relative;
-  }
-  .like-btn {
-    color: #2d88ff; 
-  }
-  
-  .like-btn:hover {
-    color: #1d70ff; 
-  }
-  
-  .love-btn {
-    color: #f25268;
-  }
-  
-  .love-btn:hover {
-    color: #f23250; 
-  }
-  .reaction-btn {
+position: relative;
+display: inline-block;
+padding-top: 20px; /* Add padding between the post picture and the reactions */
+border-bottom: 1px #44475a;
+}
+.reaction-btn {
+background: none;
+border: none;
+cursor: pointer;
+margin-right: 10px;
+color: white;
+transition: opacity 0.2s ease-in-out;
+position: relative; /* Changed from absolute to relative */
+white-space: nowrap;
+opacity: 1; /* Changed from 0 to 1 */
+}
 
-    transition: transform 0.3s ease-in-out; 
-  }
-  
-  .reaction-btn:hover {
-    transform: scale(1.2); /* Add this line */
-  }
+.reaction-btn:hover, .reaction-btn.selected {
+color: #bd93f9;
+}
+
+.like-btn, .love-btn {
+color: white;
+}
+
+.like-btn:hover, .love-btn:hover {
+color: #bd93f9;
+}
+.reaction-btn {
+
+  transition: transform 0.3s ease-in-out; 
+}
+
+.reaction-btn:hover {
+  transform: scale(1.2); /* Add this line */
+}
+.comments {
+  background: #282a36; /* Dracula background color */
+  padding: 10px; /* Padding around the comments */
+}
+
+.comment-input {
+  padding: 10px; /* Padding around the comment input */
+  background: #282a36; /* Dracula background color */
+  border: 1px solid white; /* Dracula green border */
+  width: 100%;
+  border-radius: 10px;
+}
+
   .comment-btn {
-    color: #606770; /* Facebook's icon color */
-  }
+color: white;
+background-color: #282a36;
+border: 1px solid white;
+border-radius: 10px; 
+margin-top: 10px; }
   
-  .comment-btn:hover {
-    color: #3578E5; /* Facebook's primary color */
-  }
-  .menu {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-  }
-  
-  .dots {
-    width: 5px;
-    height: 5px;
-    background-color: #000;
-    border-radius: 50%;
-    margin: 2px;
-  }
-  
-  .trash-icon {
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: red;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }
-  
-  .menu:hover .trash-icon {
-    opacity: 1;
-  }
-  
-  .menu:hover .dots {
-    opacity: 0;
-  }
+.comment-btn:hover {
+color: #bd93f9;
+background-color: #282a36; 
+border: 1px solid #bd93f9; }
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.dots {
+  width: 5px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  margin: 2px;
+}
+
+.trash-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: red;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.menu:hover .trash-icon {
+  opacity: 1;
+}
+
+.menu:hover .dots {
+  opacity: 0;
+}
