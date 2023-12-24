@@ -1,20 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
-declare var $: any;
-
-
-// Define the StudyRoom type
-interface StudyRoom {
-  title: string;
-  topic: string;
-  maxNumber: number;
-  level: string;
-  password: string;
-  usePassword: boolean;
-  creationTime: Date;
-}
 
 @Component({
   selector: 'app-groups',
@@ -23,46 +12,45 @@ interface StudyRoom {
   templateUrl: './groups.component.html',
   styleUrls: ['./groups.component.css']
 })
-
 export class GroupComponent {
-  showCreateForm: boolean = false;
-  newStudyRoom: StudyRoom = {
-    title: '',
-    topic: '',
-    maxNumber: 0,
-    level: '',
-    password: '',
-    usePassword: false,
-    creationTime: new Date()
-  };
-  studyGroups: StudyRoom[] = [];
+  title: string = '';
+  topic: string = '';
+  maximum_number: number = 0;
+  level: string = '';
+  password: string = '';
+  constructor(private http: HttpClient) { }
+  submitForm(event: Event) {
+    event.preventDefault();
+  
+    let data = {
+      'title': this.title,
+      'topic': this.topic,
+      'maximum_number': this.maximum_number,
+      'level': this.level,
+      'password': this.password
+    };
+  
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+  
+    this.http.post('http://localhost/freshstart/socialapp/src/app/groups/groups/groups.php', data, { headers }).subscribe({
+      next: response => {
+        console.log('Server response: ', response);
+        window.alert('Group creation was Successful');
+      },
+      error: error => {
+        console.log('Server error: ', error);
+        window.alert('Group creation Failed');
+      }
+    });
+  
+  }
 
+  showCreateForm = false; // Add this line to declare the showCreateForm property
+
+  // Add this method to toggle the showCreateForm property
   toggleCreateForm() {
     this.showCreateForm = !this.showCreateForm;
   }
 
-  createStudyRoom() {
-    console.log('Creating study room:', this.newStudyRoom);
-    this.studyGroups.push({ ...this.newStudyRoom, creationTime: new Date() });
-  
-    // Reset the form after submission
-    this.newStudyRoom = {
-      title: '',
-      topic: '',
-      maxNumber: 0,
-      level: '',
-      password: '',
-      usePassword: false,
-      creationTime: new Date()
-    };
-    this.showCreateForm = false;
-    console.log('Study groups:', this.studyGroups);
-  }
-  
-  // Additional function to show or hide the form based on a condition
-  // You can customize the condition based on your requirements
-  shouldShowForm(): boolean {
-    // Example: Only show the form if there are no study groups
-    return this.studyGroups.length === 0;
-  }
+
 }

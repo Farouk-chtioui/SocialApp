@@ -16,29 +16,28 @@
 <!-- Form to create a new Study Group -->
 <div class="row" *ngIf="showCreateForm">
   <div class="col-md-6 offset-md-3">
-    <form (ngSubmit)="createStudyRoom()">
+    <form (ngSubmit)="submitForm($event)">
       <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="newStudyRoom.title" required>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="title" required>
       </div>
       <div class="form-group">
         <label for="topic">Topic:</label>
-        <input type="text" class="form-control" id="topic" name="topic" [(ngModel)]="newStudyRoom.topic" required>
+        <input type="text" class="form-control" id="topic" name="topic" [(ngModel)]="topic" required>
       </div>
       <div class="form-group">
-        <label for="maxNumber">Maximum Number:</label>
-        <input type="number" class="form-control" id="maxNumber" name="maxNumber" [(ngModel)]="newStudyRoom.maxNumber" required>
+        <label for="maximum_number">Maximum Number:</label>
+        <input type="number" class="form-control" id="maximum_number" name="maximum_number" [(ngModel)]="maximum_number" required>
       </div>
       <div class="form-group">
         <label for="level">Level:</label>
-        <input type="text" class="form-control" id="level" name="level" [(ngModel)]="newStudyRoom.level" required>
+        <input type="text" class="form-control" id="level" name="level" [(ngModel)]="level" required>
       </div>
       <div class="form-group">
         <label for="password">Password:</label>
-        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="newStudyRoom.password">
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password">
       </div>
       <div class="form-check dracula-cyan-green-checkbox">
-        <input type="checkbox" class="form-check-input" id="usePassword" name="usePassword" [(ngModel)]="newStudyRoom.usePassword">
         <label class="form-check-label" for="usePassword">Use Password</label>
       </div>
 
@@ -51,11 +50,11 @@
     <!-- Feed with Study Groups -->
     <div class="row">
       <div class="col-md-6 offset-md-3">
-        <div *ngFor="let group of studyGroups" class="group-box">
-          <h4>{{ group.title }}</h4>
-          <p><strong>Topic:</strong> {{ group.topic }}</p>
-          <p><strong>Maximum Number:</strong> {{ group.maxNumber }}</p>
-          <p><strong>Level:</strong> {{ group.level }}</p>
+        <div class="group-box">
+          <h4>{{ title }}</h4>
+          <p><strong>Topic:</strong> {{ topic }}</p>
+          <p><strong>Maximum Number:</strong> {{maximum_number }}</p>
+          <p><strong>Level:</strong> {{ level }}</p>
           <button class="drac-btn drac-btn-primary enter-group-btn">Enter Group</button>
         </div>
       </div>

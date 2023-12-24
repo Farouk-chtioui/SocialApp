@@ -18,7 +18,17 @@ body {
 .input-group {
     margin-bottom: 20px;
 }
-
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #6272a4;
+    background-color: #282a36;
+    color: white;
+}
+.form-control input  {
+    background-color: #282a36 !important;
+    border: 2px solid #44475a !important;
+    border-radius: 10px !important;
+}
 /* Style for the "Create Study Group" button */
 .create-group-btn {
     margin-bottom: 20px;
@@ -40,31 +50,15 @@ body {
     margin-top: 10px;
 }
 
-input {
-  
-    background: linear-gradient(to right, #6272a4, #44475a, #282a36); /* Dracula gradient colors */
-    background-size: 200% 100%; /* Increase the background size to create room for animation */
-    animation: gradientAnimation 3s infinite; /* Add animated gradient background */
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 100% 0; /* Initial position */
-    }
-    50% {
-        background-position: 0 0; /* Midway position */
-    }
-    100% {
-        background-position: 100% 0; /* Final position */
-    }
-}
 }
 
 /* Apply Dracula theme styles to labels and checkboxes */
 .form-check-label {
     color: #f8f8f2;
 }
-
+button {
+    text-align: center;
+}
 .form-check-input {
     background: #282a36;
     border: 1px solid #44475a;
@@ -75,9 +69,10 @@ input {
     color: #f8f8f2; /* Text color for Dracula theme buttons */
     background: linear-gradient(to right, #6272a4, #44475a, #282a36); /* Dracula gradient colors */
     border: none;
-    padding: 8px 16px;
+    
     cursor: pointer;
     transition: filter 0.3s ease; /* Add smooth transition for hover effect */
+    text-align: center;
 }
 
 .drac-btn:hover {
@@ -97,10 +92,7 @@ input {
 }
 
 /* Apply Dracula theme styles to form controls */
-.form-control {
-    color: #f8f8f2;
-    background: linear-gradient(to right, #6272a4, #44475a, #282a36);
-}
+
 .dracula-cyan-green-checkbox .form-check-input:checked {
     background-color: #50fa7b; /* Dracula cyan green color when checked */
     border-color: #282a36; /* Dracula cyan green color for the border */

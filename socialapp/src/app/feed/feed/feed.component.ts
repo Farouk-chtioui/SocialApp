@@ -13,7 +13,7 @@ export class FeedComponent implements OnInit {
   posts: any[] = [];
   authService: any;
   private refreshFeed = new Subject<void>();
-  profilePicture = this.sharedService.getPofilePicture(); 
+  profilePicture = 'assets/images/profilepic.png'; 
 
   constructor(private http: HttpClient,private sharedService: SharedService) { }
   ngOnInit() {
