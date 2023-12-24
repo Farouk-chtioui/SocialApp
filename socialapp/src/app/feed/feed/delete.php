@@ -21,7 +21,10 @@ $result = $db->query("SELECT UserID FROM Posts WHERE PostID = $postId");
 $post = $result->fetch_assoc();
 
 if ($post['UserID'] == $currentUserId) {
-    // If the current user is the author of the post, delete the post
+    // If the current user is the author of the post, delete the comments and the post
+    $sql = "DELETE FROM Comments WHERE PostID = $postId";
+    $db->query($sql);
+
     $sql = "DELETE FROM Posts WHERE PostID = $postId";
     $db->query($sql);
 } else {
