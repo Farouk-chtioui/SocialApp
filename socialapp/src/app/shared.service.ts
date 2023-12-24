@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class SharedService {
   private thirdSharedVariable: number=0;  // Initialize sharedVariable with an empty string
   private profilePictureSource = new BehaviorSubject(localStorage.getItem('profilePicture') || 'assets/images/profilepic.png');
     currentProfilePicture = this.profilePictureSource.asObservable();
-  constructor() { }
+
+  constructor(private http: HttpClient) { }
+
 setThirdSharedVariable(value: number) {
     this.thirdSharedVariable = value;
   }
@@ -36,5 +39,10 @@ setThirdSharedVariable(value: number) {
   }
   getPofilePicture() {
     return this.profilePictureSource;
+  }
+
+  searchUsers(searchText: string): Observable<any[]> {
+    // replace 'your-api-url' with the actual API URL
+    return this.http.get<any[]>(`http://localhost/freshstart/socialapp/src/app/navbar/navbar/navbar.php?search=${searchText}`);
   }
 }

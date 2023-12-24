@@ -6,16 +6,33 @@ import { FeedModule } from 'src/app/feed/feed.module';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { SideenavModule } from 'src/app/sideenav/sideenav.module';
+import { SharedService } from 'src/app/shared.service';
+import { FormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, SideenavModule,FeedModule],
+  imports: [CommonModule, SideenavModule,FeedModule, FormsModule, ReactiveFormsModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  searchTextControl = new FormControl();
+  searchResults: any[] = [];
+  
 
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any) {}
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any, private sharedService: SharedService, private http: HttpClient) {
+    this.searchTextControl.valueChanges.subscribe(searchTerm => {
+      if (searchTerm.trim() !== '') {
+        this.searchUsers(searchTerm);
+      } else {
+        this.searchResults = [];
+      }
+    });
+  }
 
   navigateToFeed() {
     this.router.navigate(['/feed']);
@@ -26,7 +43,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Check if the application is running in a browser environment
     if (isPlatformBrowser(this.platformId)) {
       const animatedIcon = document.getElementById('myAnimatedIcon');
       if (animatedIcon) {
@@ -41,5 +57,18 @@ export class NavbarComponent implements OnInit {
       animatedIcon.classList.toggle('open');
       animatedIcon.classList.toggle('half-opacity');
     }
+  }
+  
+  searchUsers(searchTerm: string): void {
+    const apiUrl = `http://localhost/freshstart/socialapp/src/app/navbar/navbar/navbar.php?searchTerm=${searchTerm}`;
+
+    this.http.get(apiUrl).subscribe((data: any) => {
+      console.log('Received data:', data);
+      this.searchResults = data;
+    });
+  }
+
+  navigateToUserProfile(UserID: string) { // Add type to 'UserID'
+    this.router.navigate(['/profile', UserID]); // Use 'UserID' instead of 'userId'
   }
 }

@@ -17,10 +17,22 @@
       <!-- Your logo content goes here -->
       <img src="assets/images/epiverse.png" alt="Logo">
     </div>
+    <!-- Search bar content goes here -->
     <div class="search-bar">
-      <!-- Search bar content goes here -->
-      <input type="text" placeholder="Search...">
+      <input type="text" [formControl]="searchTextControl" placeholder="Search...">
+      <div *ngIf="searchResults.length > 0" class="search-results">
+        <div *ngFor="let user of searchResults" class="search-result-item">
+          <img *ngIf="user.Profile_Picture" [src]="user.Profile_Picture" alt="Profile Picture" class="profile-pic">
+          <div class="user-info">
+            <span class="username">{{ user.Username }}</span>
+            <span class="email">{{ user.Email }}</span>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    
+
     <div class="menu-icons">
       <!-- Menu icons go here -->
       <a (click)="navigateToFeed()">
