@@ -17,14 +17,20 @@ if ($db->connect_error) {
 
 // Get the data from the POST request
 $data = json_decode(file_get_contents('php://input'), true);
-$userId = $data['userID'];
-$postId = $data['postID'];
-$commentText = $data['commentText'];
+error_log(print_r($data, true));
+if (json_last_error() !== JSON_ERROR_NONE) {
+    die('Invalid JSON received.');
+}
+
+$userId = isset($data['userID']) ? $data['userID'] : null;
+$postId = isset($data['postID']) ? $data['postID'] : null;
+$commentText = isset($data['commentText']) ? $data['commentText'] : null;
 
 // Prepare the SQL statement
 $stmt = $db->prepare("INSERT INTO Comments (UserID, PostID, Comment_Text) VALUES (?, ?, ?)");
 $stmt->bind_param("iis", $userId, $postId, $commentText);
-
+$response = ['status' => 'Success'];
+echo json_encode($response);
 // Execute the SQL statement
 if ($stmt->execute()) {
     echo "Success";

@@ -138,3 +138,27 @@ border: 1px solid #bd93f9; }
 .menu:hover .dots {
   opacity: 0;
 }
+.comments {
+  margin-top: 20px;
+}
+
+.comment {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-details {
+  flex-grow: 1;
+}

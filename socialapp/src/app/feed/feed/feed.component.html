@@ -48,15 +48,15 @@
             <h3>Comments</h3>
             <div class="comment" *ngFor="let comment of post.comments">
               <div class="user-info">
-                <img src="assets/profile-placeholder.png" alt="Profile picture" class="profile-pic">
+                <img [src]="comment.profilePicture|| 'assets/images/profilepic.png'" alt="Profile picture" class="profile-pic">
                 <div class="user-details">
                   <h4 class="username">{{ comment.username }}</h4>
-                  <p class="comment-text">{{ comment.text }}</p>
+                  <p class="comment-text">{{ comment.commentText }}</p>
                 </div>
               </div>
             </div>
-            <form class="comment-form">
-              <input type="text" placeholder="Write a comment" class="comment-input">
+            <form class="comment-form" (submit)="postComment(useridd, post.PostID,$event)">
+              <input type="text" placeholder="Write a comment" class="comment-input" #commentInput>
               <button type="submit" class="comment-btn">Comment</button>
             </form>
           </div>

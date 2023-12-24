@@ -33,6 +33,9 @@ if(isset($_POST['UserID']) && isset($_FILES['image'])){
     if($file_size > 2097152){
         $errors[]='File size must be exactly 2 MB';
     }
+    if(empty($file_name)) {
+        $file_name = "assets/images/profilepic.png"; // replace with your default picture path
+    }
   
     if(empty($errors)==true){
         move_uploaded_file($file_tmp,"profileImg/".$file_name);
