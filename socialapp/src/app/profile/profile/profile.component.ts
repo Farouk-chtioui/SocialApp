@@ -5,12 +5,13 @@ import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserprofileModule } from 'src/app/userprofile/userprofile.module';
 
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, UserprofileModule],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
