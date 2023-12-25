@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Create Post</h5>
-          <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm">
+          <form (ngSubmit)="onSubmit(postForm)" #postForm="ngForm" class="post-form">
             <div class="form-group">
               <input type="number" id="userID" name="userID" ngModel="{{useridd}}" required hidden>
             </div>
@@ -15,8 +15,12 @@
             </div>
 
             <div class="form-group">
-              <label for="imageURL">Image URL:</label>
-              <input type="file" id="image" name="image" (change)="onFileSelected($event)" ngModel class="form-control-file">
+              <label for="image"></label>
+              <input type="file" id="media" name="media" (change)="onFileSelected($event)" ngModel style="display: none;" accept="image/*,video/*">
+              <label for="media" class="file-icon-button">
+                <i class="fas fa-file-upload"></i> <!-- This is a Font Awesome icon. You can use any icon library or an image -->
+              </label>
+              <span id="selectedFileName"></span> <!-- New element to display the file name -->
             </div>
 
             <button type="submit" class="btn btn-primary">Create Post</button>

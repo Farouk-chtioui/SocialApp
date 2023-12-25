@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -24,7 +25,8 @@ export class NavbarComponent implements OnInit {
   searchResults: any[] = [];
   
 
-  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any, private sharedService: SharedService, private http: HttpClient) {
+  constructor(private router: Router, @Inject(PLATFORM_ID) private platformId: any, private sharedService: SharedService, private http: HttpClient,
+   private route: ActivatedRoute) {
     this.searchTextControl.valueChanges.subscribe(searchTerm => {
       if (searchTerm.trim() !== '') {
         this.searchUsers(searchTerm);
@@ -68,7 +70,15 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  navigateToUserProfile(UserID: string) { // Add type to 'UserID'
-    this.router.navigate(['/profile', UserID]); // Use 'UserID' instead of 'userId'
+  navigateToUserProfile(useridd: string): void {
+    // Check if the user is navigating to their own profile
+    const currentUserId = this.route.snapshot.params['userIdd'];
+    if (useridd === currentUserId) {
+      // Redirect to the /profile route
+      this.router.navigate(['/profile']);
+    } else {
+      // Redirect to the user's profile
+      this.router.navigate(['/profile', useridd]);
+    }
   }
 }

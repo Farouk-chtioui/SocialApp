@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SharedService } from 'src/app/shared.service';
 import { HttpClient } from '@angular/common/http';
+import { OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,29 +15,38 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
   username: string = '';
   email: string = '';
   useridd:number=0;
   profilePicture = 'assets/images/profilepic.png'; 
 
-  constructor(private sharedService: SharedService,private http: HttpClient) { }
-  ngOnInit() {
+  constructor(private sharedService: SharedService,private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  ngOnInit(): void {
     // Use the service to get the shared variable
     this.username = this.sharedService.getSharedVariable();
-    this.email=this.sharedService.getSecondSharedVariable();
-    this.useridd=this.sharedService.getThirdSharedVariable();
-    console.log(this.username);
-    this.http.get(`http://localhost/freshstart/socialapp/src/app/profile/profile/getprofile.php?UserID=${this.useridd}`)
-    .subscribe((response: any) => {
-      if (response && response.path) {
-        this.profilePicture = response.path;
-        this.sharedService.changeProfilePicture(this.profilePicture);
-      }
-    }, error => {
-      console.error(error);
+    this.email = this.sharedService.getSecondSharedVariable();
+
+    this.route.params.subscribe(params => {
+      this.useridd = +params['useridd']; // Convert to number, assuming 'useridd' is a number
+      console.log(this.useridd);
+
+      // Fetch user profile based on the obtained 'useridd'
+      this.http.get(`http://localhost/freshstart/socialapp/src/app/profile/profile/getprofile.php?UserID=${this.useridd}`)
+        .subscribe((response: any) => {
+          if (response && response.path) {
+            this.profilePicture = response.path;
+            this.sharedService.changeProfilePicture(this.profilePicture);
+          }
+        }, error => {
+          console.error(error);
+        });
+
+      // Redirect to the user's profile
+      this.router.navigate(['/profile', this.useridd]);
     });
   }
+
   // Properties for storing course and interest data
   courses: string[] = [];
   interests: string[] = [];
