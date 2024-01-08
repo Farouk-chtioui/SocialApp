@@ -240,12 +240,12 @@ button[data-toggle="collapse"] i {
   display: flex;
   align-items: center;
   padding: 8px;
-  border-bottom: 1px solid #44475a;
+  border-bottom: 1px solid #ff79c6;
 }
 
 .profile-pic {
   width: 40px; /* Adjust the size as needed */
-  height: 50px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }

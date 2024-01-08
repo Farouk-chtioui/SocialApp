@@ -12,15 +12,13 @@ import { LoginComponent } from './login/login/login.component';
  const routes: Routes = [
   { path: '', redirectTo: '/feed', pathMatch: 'full' },
   { path: 'feed', component: FeedComponent },
-  
+  { path: 'profile', component: ProfileComponent },
   { path: 'groups', component: GroupComponent },
   { path: 'friends', component: FriendsComponent},
   { path: 'chatbox', component: ChatboxComponent},
   { path: 'chatwindow', component: ChatwindowComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'profile/:useridd', component: ProfileComponent },
 ];
 
 @NgModule({

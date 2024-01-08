@@ -28,16 +28,8 @@ export class PostComponent {
   }
   selectedFile: File | null = null;
 
-  onFileSelected(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target.files && target.files.length > 0) {
-      this.selectedFile = target.files[0];
-      // Update the element with the file name
-      const selectedFileNameElement = document.getElementById('selectedFileName');
-      if (selectedFileNameElement) {
-        selectedFileNameElement.textContent = this.selectedFile.name;
-      }
-    }
+  onFileSelected(event?: any) {
+    this.selectedFile = <File>event.target.files[0];
   }
   onSubmit(postForm: NgForm) {
     const postData = {
@@ -57,16 +49,6 @@ export class PostComponent {
   
     postForm.resetForm(); // Reset the form after submission
     this.selectedFile = null; // Clear the selected file
-    const fileInputElement = document.getElementById('media') as HTMLInputElement;
-    if (fileInputElement) {
-      fileInputElement.value = '';
-    }
-  
-    // Clear the file name display
-    const selectedFileNameElement = document.getElementById('selectedFileName');
-    if (selectedFileNameElement) {
-      selectedFileNameElement.textContent = '';
-    }
   }
   postToServer(postData: any) {
     const formData = new FormData();

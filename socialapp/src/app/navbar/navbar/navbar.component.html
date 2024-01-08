@@ -21,7 +21,7 @@
     <div class="search-bar">
       <input type="text" [formControl]="searchTextControl" placeholder="Search...">
       <div *ngIf="searchResults.length > 0" class="search-results">
-        <div *ngFor="let user of searchResults" class="search-result-item" (click)="navigateToUserProfile(user.UserID)">
+        <div *ngFor="let user of searchResults" class="search-result-item">
           <img *ngIf="user.Profile_Picture" [src]="user.Profile_Picture" alt="Profile Picture" class="profile-pic">
           <div class="user-info">
             <span class="username">{{ user.Username }}</span>
@@ -30,7 +30,6 @@
         </div>
       </div>
     </div>
-    
     
     
 
